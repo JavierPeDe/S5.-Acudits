@@ -9,19 +9,21 @@
 
 //Variasbles:
 const urlJoke = 'https://icanhazdadjoke.com/';
-
+const textJoke = document.getElementById('acudit');
 //randomJoke() Funcion que utiliza la API urlJoke y muestra un chiste por consola. 
 async function randomJoke() {
-    try{
-    const jokeData = await fetch(urlJoke, {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    const jokeObj = await jokeData.json();
-    console.log(jokeObj.joke);
-}
-catch{
-    console.log('Se ha producido un error al llamar a ' + urlJoke);
-}
+    try {
+        const jokeData = await fetch(urlJoke, {
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        const jokeObj = await jokeData.json();
+        console.log(jokeObj.joke);
+        textJoke.innerHTML = jokeObj.joke;
+    }
+    catch {
+        console.log('Se ha producido un error al llamar a ' + urlJoke);
+        textJoke.innerHTML = ('Se ha producido un error al llamar a ' + urlJoke);
+    }
 }
