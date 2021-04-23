@@ -1,15 +1,16 @@
-//Exercici-1 (nivel-1)
-// Crear la web d'acudits, el funcionament dels quals és:
-
-// - En entrar no mostrarà cap acudit. Apareixerà el títol i el botó de següent acudit“
-
-// - En prémer el botó de “Següent acudit” es farà fetch a la API d'acudits i es mostrarà per consola l'acudit en qüestió.
-
-// Nota: En aquest exercici no és necessari maquetar la web, primer farem que funcioni per a passar a aplicar-li els estils.
-
 //Variasbles:
 const urlJoke = 'https://icanhazdadjoke.com/';
+const urlJoke2 = "https://api.icndb.com/jokes/random";
 const textJoke = document.getElementById('acudit');
+//Selector de jokes: elije la api a utilizar de manera aleatoria
+const selectorJoke =() =>{
+    if((Math.floor((Math.random()* 9)+1)%2)===0) {
+        randomJoke();
+    }
+    else {
+        randomJoke2();
+    }
+}
 const randomJoke=()=>{
     axios ( {
         method: 'GET',
@@ -20,6 +21,16 @@ const randomJoke=()=>{
     }).then((jokes)=>{
         console.log(jokes.data.joke)
         textJoke.innerHTML =jokes.data.joke;
+    })
+}
+
+const randomJoke2=()=>{
+    axios ( {
+        method: 'GET',
+        url: urlJoke2,
+    }).then((jokes)=>{
+        console.log(jokes.data.value.joke)
+        textJoke.innerHTML =jokes.data.value.joke;
     })
 }
 

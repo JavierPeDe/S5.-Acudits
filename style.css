@@ -6,8 +6,6 @@
 }
 
 .contenedor{
- 
-
   height: 100vh;
   background: url(./img/pexels.jpg);
   background-position: center center;
@@ -37,7 +35,7 @@
 .containerAcudits p{
   font-size: 1.2rem;
   text-align: center;
-  
+  padding: 5px;
 }
 .containerAcudits button{
   padding: 1rem;
