@@ -27,3 +27,66 @@ async function randomJoke() {
         textJoke.innerHTML = ('Se ha producido un error al llamar a ' + urlJoke);
     }
 }
+
+//Variables:
+const curDate = document.getElementById("date");
+const weatherIcon = document.getElementById("weatherIcon");
+const currentCity = document.getElementById("location");
+const curTemp = document.getElementById("temp");
+const tempMaxMin = document.getElementById("tempMinMax");
+const descriptionWeatherIcon = document.getElementById("descriptionWeatherIcon");
+const newCity = document.getElementById("newCity");
+const cityNotFound = document.getElementById("cityNotFound");
+//funcion principal elTiempo.
+function elTiempo(city = "Barcelona") {
+    let APIkey = 'c2a837960ca2ff0c9275e80b7751ee58'
+    urlTiempo = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}`
+    fetch(urlTiempo)
+        .then(response => response.json())
+        .then(data => {
+            if(data.name!=undefined){
+            addCurrentCity(data);
+            addCurTemp(data);
+            addTempMaxMin(data);
+            addIcon(data);
+            addDate()
+            }
+        
+        })
+        .catch(err => console.log('No funciona!'));
+}
+
+//Funciones secundarias:
+//Indica la ciudad seleccionada:
+const addCurrentCity = (date) => currentCity.innerHTML = date.name;
+//Añade a la app la temperatura actual de la ciudad. 
+const addCurTemp = date => curTemp.innerHTML = `${kelvinToCelsius(date.main.temp)}ºC`;
+//Añade a la App la temperatura maxima y minima.
+const addTempMaxMin = date => {
+    tempMaxMin.innerHTML = `Min ${kelvinToCelsius(date.main.temp_min)}ºC | Max ${kelvinToCelsius(date.main.temp_max + 1)}ºC`;
+}
+//Funcion para paras de grados Kelvin a grados celsius:
+const kelvinToCelsius = temp => Math.ceil(temp - 273.15);
+
+//Añade el Icono de tiempo a la app (Se utiliza el codigo de img de la API y sus iconos):
+const addIcon = data => {
+    weatherIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    descriptionWeatherIcon.innerHTML = data.weather[0].description;
+}
+//Añade la fecha desde el objeto de la API
+const addDate = () => {
+    let currentTime = new Date();
+    let fecha = currentTime.toDateString();
+    curDate.innerHTML = fecha;
+}
+//event lisenings:
+document.getElementById("searchNewCity").addEventListener("click", function () {
+    let city = newCity.value;
+    elTiempo(city);
+});
+document.querySelector('#newCity').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        let city = newCity.value;
+        elTiempo(city);
+    }
+});

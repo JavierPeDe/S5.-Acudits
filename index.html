@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S5.-Acudits</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
 </head>
-<body>
-    <h1>S5. Acudits</h1>
-    <p id='acudit'></p>
-    <button onclick="randomJoke()">Següent acudit</button>
 
-
-
-
+<body onload="elTiempo()">
+    <div class="container">
+        <div id="weatherApp">
+            <div class="buscador">
+                <input type="text" id="newCity" placeholder="Search city">
+                <button id="searchNewCity"><i class="fas fa-search-location"></i></button>
+            </div>
+            <div > <img src="" id="weatherIcon"></div>
+            <h2 id="descriptionWeatherIcon"></h2>
+            <div id="weatherInfo">
+                <div class="wafesT">
+                    <div class="wafe"> </div>
+                    <div class="wafe-1"> </div>
+                    <div class="wafe-2"> </div>
+                </div>
+                <div class="container-L-D">
+                    <h2 id="location"></h2>
+                    <p id="date"></p>
+                </div>
+                <div class="temperaturas">
+                    <h1 id="temp"></h1>
+                    <h3 id="tempMinMax"></h3>
+                </div>
+            </div>
+        </div>    
+    <div class="accudits">
+        <h1>S5. Acudits</h1>
+        <p id='acudit'></p>
+        <button onclick="randomJoke()">Següent acudit</button>
+    </div>
+</div>
     <script src="main.js"></script>
 </body>
+
 </html>
