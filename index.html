@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S5.-Acudits</title>
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
 </head>
-<body>
-    <h1>S5. Acudits</h1>
-    <p id='acudit'></p>
-    <button onclick="randomJoke()">Següent acudit</button>
 
-
-
-
+<body onload="elTiempo()">
+    <div class="contenedor">
+        <p id="tiempoTexto"></p>
+        <div class="containerAcudits">
+            <h2 class="titul">Preparat per riure? 🤣</h2>
+            <p id="acudit"></p>
+            <button id="buttonJoke" onClick="selectorJoke()">Següent acudit</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
